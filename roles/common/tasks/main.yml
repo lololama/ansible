@@ -1,0 +1,14 @@
+- name: Ping my hosts
+  ansible.builtin.ping:
+
+- name: Print message
+  ansible.builtin.debug:
+    msg: Hello world
+
+- name: Create a file
+  ansible.builtin.file:
+    path: /tmp/iwashere.txt
+    state: touch
+    owner: root
+    group: root
+    mode: '0644'
