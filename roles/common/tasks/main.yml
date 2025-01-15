@@ -8,7 +8,23 @@
 - name: Copy myscript.sh to the server
   ansible.builtin.copy:
     src: roles/common/files/myscript.sh
-    dest: /tmp/myscript.sh
+    dest: /usr/local/bin/myscript.sh
     mode: '0755'
     owner: root
     group: root
+
+- name: Create systemd service for myscript.sh
+  ansible.builtin.template:
+    src: roles/common/templates/myscript.service.j2
+    dest: /etc/systemd/system/myscript.service
+    mode: '0644'
+
+- name: Reload systemd daemon
+  ansible.builtin.systemd:
+    daemon_reload: yes
+
+- name: Enable and start myscript service
+  ansible.builtin.systemd:
+    name: myscript
+    enabled: yes
+    state: started

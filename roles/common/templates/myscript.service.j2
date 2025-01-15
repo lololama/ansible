@@ -1,0 +1,11 @@
+[Unit]
+Description=My Custom Script Service
+After=multi-user.target
+
+[Service]
+ExecStart=/usr/local/bin/myscript.sh
+Restart=always
+User=root
+
+[Install]
+WantedBy=multi-user.target
