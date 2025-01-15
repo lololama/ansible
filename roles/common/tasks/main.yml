@@ -5,10 +5,10 @@
   ansible.builtin.debug:
     msg: Hello world
 
-- name: Create a file
-  ansible.builtin.file:
-    path: /tmp/iwashere.txt
-    state: touch
+- name: Copy myscript.sh to the server
+  ansible.builtin.copy:
+    src: roles/common/files/myscript.sh
+    dest: /tmp/myscript.sh
+    mode: '0755'
     owner: root
     group: root
-    mode: '0644'
